@@ -1,3 +1,8 @@
+const serverless = require("serverless-http");
+const app = express();
+app.get("/", (req, res) => {
+  res.send("<h1>¡Hola Mundo desde Express en Netlify Functions! 🌍</h1>");
+});
 // Esto es un comentario 😊
 // Un programa básico en JavaScript que imprime un saludo 🎉
 // 01 imprimir un saludo en la consola 🎉
@@ -30,18 +35,5 @@ console.log("Dirección:", direccion);
 console.log("Dirección:", direccion.calle);
 console.log("Dirección:", direccion.ciudad);
 console.log("Dirección:", direccion.pais);
-// Importamos el módulo http 😊
-const http = require("http");
-
-// Creamos el servidor 🚀
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/html" }); // Configuramos el encabezado de la respuesta 📝
-  res.write("<h1>¡Hola Mundo desde Node.js! 🌍</h1>"); // El contenido que se mostrará en el navegador 🎉
-  res.end(); // Finalizamos la respuesta
-});
-
-// Establecemos el puerto y ponemos a escuchar el servidor 😊
-const port = 3000;
-server.listen(port, () => {
-  console.log(`Servidor ejecutándose en http://localhost:${port} 🚀`);
-});
+// Exporta la función para Netlify
+module.exports.handler = serverless(app);
